@@ -1,0 +1,7 @@
+[build]
+  publish = "out"
+  # We REMOVED the "command" line. 
+  # This prevents Netlify from trying to run the Next.js plugin logic.
+
+[functions]
+  included_files = ["!*"]

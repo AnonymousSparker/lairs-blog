@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    // We can remove 'unoptimized' now because Netlify handles image optimization!
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**', // Allows external images from your blog posts
+      },
+    ],
+  },
 };
 
 export default nextConfig;
