@@ -11,6 +11,14 @@
   --font-serif: var(--font-lora), ui-serif, Georgia;
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular;
 
+  --color-brand-50: #f5f3ff;  /* Very light (backgrounds) */
+  --color-brand-100: #ede9fe;
+  --color-brand-400: #a78bfa; /* Light text / Dark mode hover */
+  --color-brand-500: #8b5cf6; /* Main button color */
+  --color-brand-600: #7c3aed; /* Darker text */
+  --color-brand-700: #6d28d9;
+  --color-brand-900: #4c1d95; /* Very dark */
+
   /* Custom Colors */
   --color-dark-bg: #121212;
   --color-dark-card: #1e1e1e;
@@ -79,7 +87,7 @@
     color: #a8a29e;
   }
   :root[class~="dark"] .prose a {
-    color: #a7f3d0; /* Emerald-200 */
+    color: var(--color-brand-400); /* brand-200 */
   }
 }
 
@@ -88,3 +96,33 @@
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #e5e5e5; border-radius: 4px; }
 :root[class~="dark"] ::-webkit-scrollbar-thumb { background: #44403c; }
+
+
+@layer utilities {
+  @keyframes fadeIn {
+    from { 
+      opacity: 0; 
+      transform: translateY(8px); /* Slide up slightly */
+      filter: blur(2px); /* Optional: subtle blur effect */
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  /* Class for the whole page transition */
+  .page-transition {
+    animation: fadeIn 0.1s ease forwards;
+  }
+
+  /* Class for individual items (like your blog cards) */
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+}
+
+/* .content-tag{
+  background-color: ;
+} */

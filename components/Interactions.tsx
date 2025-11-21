@@ -15,6 +15,8 @@ import {
     limit
 } from 'firebase/firestore';
 
+import { IoIosSend } from "react-icons/io";
+import { IoPersonOutline,IoThumbsUp, IoThumbsUpOutline, IoShareSocialOutline, IoEyeOutline } from "react-icons/io5"; // Add this for the name input
 // Define the shape of a comment for TypeScript
 interface Comment {
     id: string;
@@ -123,32 +125,46 @@ export default function Interactions({ postId }: { postId: string }) {
     return (
         <div className="max-w-4xl mx-auto">
 
-            {/* LIKE / SHARE / VIEW BAR */}
-            <div className="mx-4 sm:mx-0 flex flex-wrap items-center justify-center gap-4 py-8 border-t border-b border-stone-100 dark:border-white/10 mb-12">
+                    {/* LIKE / SHARE / VIEW BAR */}
+                    <div className="flex flex-wrap items-center gap-3 sm:gap-4 py-6 border-y border-stone-100 dark:border-white/5 my-12">
+            
+            {/* LIKE BUTTON */}
+            <button
+                onClick={handleLike}
+                disabled={isLiked}
+                className={`group flex items-center gap-2.5 px-5 py-2.5 rounded-full border transition-all duration-300 active:scale-95 ${
+                    isLiked
+                        ? 'bg-red-50/50 border-red-200 text-red-500 dark:bg-red-900/20 dark:border-red-900/30 cursor-default'
+                        : 'bg-white dark:bg-stone-900/40 border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:border-red-200 hover:shadow-lg hover:shadow-red-500/10'
+                }`}
+            >
+                <span className={`text-xl transition-transform duration-300 ${isLiked ? 'scale-110' : 'group-hover:scale-110 group-active:scale-90'}`}>
+                    {isLiked ? <IoThumbsUp /> : <IoThumbsUpOutline />}
+                </span>
+                <span className="font-medium text-sm">
+                    {likes} <span className="hidden sm:inline">Likes</span>
+                </span>
+            </button>
 
-                <button
-                    onClick={handleLike}
-                    disabled={isLiked}
-                    className={`flex items-center gap-2 px-6 py-2 rounded-full transition-all ${isLiked
-                            ? 'text-red-500 bg-red-50 dark:bg-red-900/20 cursor-default'
-                            : 'text-stone-600 dark:text-stone-300 bg-stone-50 dark:bg-stone-800 hover:bg-red-50 hover:text-red-500'
-                        }`}
-                >
-                    <span>{isLiked ? '❤️' : '🤍'}</span>
-                    <span>{likes} Likes</span>
-                </button>
+            {/* SHARE BUTTON */}
+            <button
+                onClick={handleShare}
+                className="group flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white dark:bg-stone-900/40 border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 transition-all duration-300 hover:border-brand-300 hover:text-brand-600 dark:hover:text-brand-400 hover:shadow-lg hover:shadow-brand-500/10 active:scale-95"
+            >
+                <IoShareSocialOutline className="text-xl group-hover:rotate-12 transition-transform duration-300" />
+                <span className="font-medium text-sm">Share</span>
+            </button>
 
-                <button
-                    onClick={handleShare}
-                    className="flex items-center gap-2 px-6 py-2 rounded-full transition-all text-stone-600 dark:text-stone-300 bg-stone-50 dark:bg-stone-800 hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20"
-                >
-                    <span>📤</span> Share
-                </button>
+            {/* VERTICAL SEPARATOR (Desktop Only) */}
+            <div className="hidden sm:block h-8 w-px bg-stone-200 dark:bg-stone-800 mx-2"></div>
 
-                <div className="flex items-center gap-2 px-6 py-2 text-stone-400">
-                    <span>👁️</span> <span>{views} Views</span>
-                </div>
+            {/* VIEWS COUNTER */}
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-stone-50 dark:bg-stone-800/50 text-stone-400 dark:text-stone-500 border border-transparent dark:border-white/5 select-none">
+                <IoEyeOutline className="text-lg" />
+                <span className="text-sm font-medium">{views} Views</span>
             </div>
+
+        </div>
 
             {/* COMMENT SECTION */}
             <section className="px-4 sm:px-0 max-w-3xl mx-auto">
@@ -157,40 +173,53 @@ export default function Interactions({ postId }: { postId: string }) {
                     <span className="text-xs font-mono text-stone-400 uppercase tracking-wider">Community</span>
                 </div>
 
-                {/* Comment Form */}
-                <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-6 mb-12 shadow-sm">
-                    <form onSubmit={submitComment} className="space-y-4">
-                        <div>
-                            <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Display Name</label>
-                            <input
-                                type="text"
-                                value={commentName}
-                                onChange={(e) => setCommentName(e.target.value)}
-                                placeholder="Anonymous"
-                                className="w-full px-4 py-2 bg-stone-50 dark:bg-black/40 border border-stone-200 dark:border-stone-700 rounded-lg text-sm outline-none focus:border-emerald-500 dark:text-white"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Your Message</label>
-                            <textarea
-                                rows={3}
-                                value={commentText}
-                                onChange={(e) => setCommentText(e.target.value)}
-                                placeholder="Share your thoughts..."
-                                required
-                                className="w-full px-4 py-3 bg-stone-50 dark:bg-black/40 border border-stone-200 dark:border-stone-700 rounded-lg text-sm outline-none focus:border-emerald-500 dark:text-white resize-y min-h-[100px]"
-                            ></textarea>
-                        </div>
-                        <div className="flex justify-end">
-                            <button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="px-6 py-2.5 bg-stone-900 hover:bg-emerald-600 dark:bg-stone-100 dark:hover:bg-emerald-400 text-white dark:text-stone-900 text-sm font-medium rounded-lg transition-colors duration-200 flex items-center gap-2"
-                            >
-                                {isSubmitting ? 'Posting...' : 'Post Comment'} 🚀
-                            </button>
-                        </div>
-                    </form>
+                {/* Comment Form Container */}
+                <div className="bg-stone-50/50 dark:bg-stone-900/30 border border-stone-100 dark:border-white/5 rounded-2xl p-6 sm:p-8 mb-12 backdrop-blur-sm transition-colors">
+                            
+                            <h3 className="text-lg font-bold text-stone-900 dark:text-white mb-6 font-serif">
+                                Join the conversation
+                            </h3>
+
+                            <form onSubmit={submitComment} className="space-y-4">
+                                
+                                {/* Name Input with Icon */}
+                                        <div className="relative group">
+                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 group-focus-within:text-brand-500 transition-colors duration-300">
+                                                <IoPersonOutline className="text-lg" />
+                                            </div>
+                                            <input
+                                                type="text"
+                                                value={commentName}
+                                                onChange={(e) => setCommentName(e.target.value)}
+                                                placeholder="Name (Optional)"
+                                                className="w-full pl-11 pr-4 py-3 bg-white dark:bg-black/40 border border-stone-200 dark:border-stone-800 rounded-xl outline-none text-stone-800 dark:text-stone-200 placeholder:text-stone-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all duration-300"
+                                            />
+                                        </div>
+
+                                        {/* Message Input */}
+                                        <div className="relative">
+                                            <textarea
+                                                rows={3}
+                                                value={commentText}
+                                                onChange={(e) => setCommentText(e.target.value)}
+                                                placeholder="Share your thoughts..."
+                                                required
+                                                className="w-full px-4 py-3 bg-white dark:bg-black/40 border border-stone-200 dark:border-stone-800 rounded-xl outline-none text-stone-800 dark:text-stone-200 placeholder:text-stone-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all duration-300 resize-none min-h-[120px]"
+                                            ></textarea>
+                                        </div>
+
+                                {/* Modern Action Button */}
+                                <div className="flex justify-end">
+                                    <button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className="px-6 py-2.5 bg-stone-900 hover:bg-brand-600 dark:bg-white dark:text-black dark:hover:bg-brand-400 dark:hover:text-white text-white text-sm font-medium rounded-xl shadow-lg shadow-stone-200 dark:shadow-none hover:shadow-brand-500/20 active:scale-95 transition-all duration-300 flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                    >
+                                        {isSubmitting ? 'Posting...' : 'Post Comment'} 
+                                        <IoIosSend className="text-xl" />
+                                    </button>
+                                </div>
+                            </form>
                 </div>
 
                 {/* Comments List */}
@@ -202,7 +231,7 @@ export default function Interactions({ postId }: { postId: string }) {
                     ) : (
                         comments.map((c) => (
                             <div key={c.id} className="flex gap-4 fade-in group">
-                                <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex flex-shrink-0 items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold text-sm shadow-sm border border-white dark:border-stone-700">
+                                <div className="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/30 flex flex-shrink-0 items-center justify-center text-brand-700 dark:text-brand-400 font-bold text-sm shadow-sm border border-white dark:border-stone-700">
                                     {c.name.charAt(0).toUpperCase()}
                                 </div>
                                 <div className="flex-1 bg-stone-50 dark:bg-stone-800/30 p-4 rounded-r-2xl rounded-bl-2xl">

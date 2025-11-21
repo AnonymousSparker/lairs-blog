@@ -52,7 +52,7 @@ export default function AboutPage() {
                     </p>
                     
                     <p className="text-stone-600 dark:text-stone-400 leading-relaxed text-sm sm:text-base mb-6">
-                        I post blogs because I find it fun and I am always open for <span className="text-stone-900 dark:text-white font-medium decoration-stone-400 underline decoration-dotted underline-offset-4 cursor-pointer hover:text-emerald-500 transition-colors">healthy discussions</span>.
+                        I post blogs because I find it fun and I am always open for <span className="text-stone-900 dark:text-white font-medium decoration-stone-400 underline decoration-dotted underline-offset-4 cursor-pointer hover:text-brand-500 transition-colors">healthy discussions</span>.
                     </p>
                     
                     <p className="text-stone-600 dark:text-stone-400 leading-relaxed text-sm sm:text-base font-mono bg-stone-50 dark:bg-stone-800/50 inline-block px-3 py-1 rounded border border-stone-100 dark:border-stone-800">

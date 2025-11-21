@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { blogPosts } from '@/lib/posts';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
+import Footer from '@/components/Footer';
 
 // This works perfectly on Netlify (SSR)
 export default async function Home({
@@ -43,7 +44,7 @@ export default async function Home({
               <Link key={post.id} href={`/post/${post.id}`}>
                 <article className="article-card group cursor-pointer fade-in py-6 border-b border-stone-100 dark:border-stone-800">
                   <div className="mb-2">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-1.5 py-0.5 rounded">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-brand-50 dark:text-dark-bg bg-stone-400 px-2.5 py-0.75 rounded-4xl">
                       {post.tags[0]}
                     </span>
                   </div>
@@ -87,6 +88,7 @@ export default async function Home({
 
         <Sidebar />
       </div>
+      <Footer />
     </div>
   );
 }
