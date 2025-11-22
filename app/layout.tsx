@@ -29,6 +29,32 @@ export const metadata: Metadata = {
     apple: '/asset/Logo.png', // Optional: for Apple devices
   },
 };
+export const metadata: Metadata = {
+  // 1. This fixes "Canonical URL" issues automatically
+  metadataBase: new URL('https://lairsbug-blogs.netlify.app'),
+
+  title: {
+    default: "Lairs.bug | Personal Blog",
+    template: "%s | Lairs.bug" // Makes titles look like "My Post | Lairs.bug"
+  },
+  description: "Personal blog by Lairs.bug covering tech, life, and thoughts.",
+  
+  // 2. Google Search Console Verification
+  verification: {
+    // You get this code from Google Search Console (I'll explain how below)
+    google: 'YOUR_GSC_VERIFICATION_CODE_HERE', 
+  },
+  
+  // 3. Basic OpenGraph (Social Sharing) setup
+  openGraph: {
+    title: 'Lairs.bug | Personal Blog',
+    description: 'Personal blog by Lairs.bug covering tech, life, and thoughts.',
+    url: 'https://lairsbug-blogs.netlify.app',
+    siteName: 'Lairs.bug',
+    locale: 'en_US',
+    type: 'website',
+  },
+};
 
 export default function RootLayout({
   children,

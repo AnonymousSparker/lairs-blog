@@ -89,7 +89,7 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
 
                             {post.thumbnail && (
                                 <div className="mb-8">
-                                    <img src={post.thumbnail} alt={post.title} className="w-full h-auto max-h-[450px] object-cover rounded-xl shadow-sm" />
+                                    <img src={post.thumbnail} alt={post.title} className="w-full h-auto sm:h-[225px] object-cover rounded-xl shadow-sm" />
                                 </div>
                             )}
                         </header>
