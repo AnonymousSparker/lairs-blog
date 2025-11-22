@@ -61,9 +61,10 @@ export default function Header() {
                     {/* LOGO */}
                     <Link href="/" className="group flex items-center gap-3 z-50" style={{userSelect:"none"}} onClick={() => {setSearchQuery(''); setIsMenuOpen(false);}}>
                         <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-black dark:bg-white rounded-full group-hover:bg-brand-500 transition-colors"></div>
-                        <h1 className="text-xl sm:text-2xl font-bold tracking-tighter text-stone-900 dark:text-white group-hover:text-brand-700 dark:group-hover:text-brand-400 transition-colors font-mono">
+                        <h1 className="text-xl sm:text-2xl font-bold tracking-tighter text-stone-900 dark:text-white group-hover:text-brand-700 dark:group-hover:text-brand-400 transition-colors font-logo">
                             Lairs.bug
                         </h1>
+                        
                     </Link>
 
                     <div className="flex items-center gap-2 sm:gap-6">

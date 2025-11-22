@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Lora, JetBrains_Mono } from "next/font/google";
+import { Inter, Lora, JetBrains_Mono, Arimo } from "next/font/google";
 import NextTopLoader from 'nextjs-toploader'; // <--- 1. IMPORT THIS
 import "./globals.css";
 
@@ -20,6 +20,13 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
   display: "swap",
 });
+const sedgwick = Arimo({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-sedgwick", // <--- Crucial: Must be unique
+  display: "swap",
+});
+
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://lairsbug-blogs.netlify.app'),
@@ -45,7 +52,6 @@ export const metadata: Metadata = {
     apple: '/icon.png',
   },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -54,20 +60,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${lora.variable} ${jetbrainsMono.variable} antialiased`}
+        // 3. Add the variable to the body class list
+        className={`${inter.variable} ${lora.variable} ${jetbrainsMono.variable} ${sedgwick.variable} antialiased`}
       >
-        {/* 2. ADD THE COMPONENT HERE */}
-        <NextTopLoader
-          color="#8b5cf6"   /* Your Emerald Green brand color */
-          initialPosition={0.08}
-          crawlSpeed={200}
-          height={5}        /* Nice thin bar */
-          crawl={true}
-          showSpinner={false} /* Spinners are annoying, bars are sleek */
-          easing="ease"
-          speed={200}
-          shadow="0 0 10pxrgb(112, 16, 185),0 0 5pxrgb(100, 16, 185)" /* Glowing effect */
-        />
+        <NextTopLoader color="#8b5cf6" />
         {children}
       </body>
     </html>

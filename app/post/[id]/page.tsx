@@ -100,7 +100,7 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
 
                         {/* Post Body */}
                         <div
-                            className="px-4 sm:px-0 prose prose-stone prose-lg max-w-none mb-12 dark:prose-invert font-serif"
+                            className="px-4 sm:px-0 prose prose-stone sm:prose-lg max-w-none mb-12 dark:prose-invert font-sans"
                             dangerouslySetInnerHTML={{ __html: post.content }}
                         />
 
