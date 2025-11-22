@@ -128,7 +128,95 @@
     animation: fadeIn 0.6s ease-out forwards;
   }
 }
+.prose table {
+  width: 100% !important; /* Force full width, overriding the editor's fixed px width */
+  table-layout: auto !important; /* Allow columns to adapt */
+  border-collapse: collapse;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 0.95em;
+}
+/* --- CUSTOM TABLE STYLING (Mobile Polished) --- */
+.prose table {
+  width: 100% !important;
+  table-layout: auto !important; /* Let columns adapt to content */
+  border-collapse: collapse;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 0.95em;
+  
+  /* Mobile Scroll Fix: Allows table to scroll horizontally if needed */
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap; /* Keeps rows cleanly aligned */
+  
+  /* Remove default border spacing */
+  border-spacing: 0;
+}
 
-/* .content-tag{
-  background-color: ;
-} */
+/* On larger screens, behave like a normal table again */
+@media (min-width: 640px) {
+  .prose table {
+    display: table;
+    white-space: normal;
+  }
+}
+
+/* Table Header */
+.prose thead th {
+  text-align: left;
+  padding: 0.75rem 1rem; /* Comfortable padding */
+  border-bottom: 1px solid #e5e7eb;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: #18181b;
+  background-color: rgba(0,0,0,0.02); /* Subtle header background */
+}
+
+/* Table Rows */
+.prose tbody td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f4f4f5;
+  color: #52525b;
+  vertical-align: top;
+  
+  /* Ensure text wraps nicely on desktop */
+  white-space: normal; 
+  max-width: 300px; /* Prevents one column from hogging space */
+}
+
+/* --- MOBILE SPECIFIC TWEAKS --- */
+@media (max-width: 640px) {
+  .prose thead th, 
+  .prose tbody td {
+    padding: 0.5rem 0.75rem; /* Tighter padding on mobile */
+    font-size: 0.85rem;       /* Slightly smaller text */
+  }
+  
+  /* Force wrapping on specific long columns if needed */
+  .prose tbody td {
+    min-width: 120px; /* Ensures columns don't get crushed too small */
+  }
+}
+
+/* Dark Mode Overrides */
+:root[class~="dark"] .prose thead th {
+  color: #f4f4f5;
+  border-color: #27272a;
+  background-color: rgba(255,255,255,0.02);
+}
+
+:root[class~="dark"] .prose tbody td {
+  color: #a1a1aa;
+  border-color: #27272a;
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose .section-divider{
+    width: 100% !important;
+    height: 0.5px;
+    background-color: #27272a;
+}
