@@ -41,41 +41,49 @@ export default async function Home({
           {/* BLOG POST LIST */}
           <div className="space-y-2">
             {filteredPosts.length > 0 ? filteredPosts.map((post) => (
-              <Link key={post.id} href={`/post/${post.id}`}>
-                <article className="article-card group cursor-pointer fade-in py-6 border-b border-stone-100 dark:border-stone-800">
+              <article key={post.id} className="article-card group fade-in py-6 border-b border-stone-100 dark:border-stone-800">
                   <div className="mb-2">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-brand-50 dark:text-dark-bg bg-stone-400 px-2.5 py-0.75 rounded-4xl">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-brand-50 dark:text-dark-bg bg-stone-400 px-2.5 py-0.75 rounded-4xl" style={{userSelect:"none"}}>
                       {post.tags[0]}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 mb-3">
+                  
+                  <div className="flex items-center gap-2 mb-3" style={{userSelect:"none"}}>
                     <div className="w-5 h-5 rounded-full flex items-center justify-center overflow-hidden">
-                      <img src="/asset/logo.png" alt="Lairs" className="w-full h-full object-cover" />
+                      <img src="/asset/logo.png" alt="Lairs" className="w-full h-full object-cover" draggable="false"/>
                     </div>
                     <span className="text-xs font-medium text-stone-600 dark:text-stone-300">{post.author}</span>
                   </div>
+                  
                   <div className="flex flex-row justify-between gap-4 sm:gap-8">
                     <div className="flex-1 min-w-0"> 
-                      <h2 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2 leading-tight group-hover:underline decoration-2 decoration-stone-300 underline-offset-4 font-serif">
-                        {post.title}
-                      </h2>
-                      <p className="text-stone-500 dark:text-stone-400 text-sm sm:text-base line-clamp-2 sm:line-clamp-3 mb-3 font-sans leading-relaxed">
+                      {/* LINK 1: The Title (Clickable) */}
+                      <Link href={`/post/${post.id}`} className="group-hover:underline decoration-2 decoration-stone-300 underline-offset-4">
+                        <h2 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2 leading-tight font-serif">
+                            {post.title}
+                        </h2>
+                      </Link>
+
+                      {/* PLAIN TEXT: The Excerpt (Selectable) */}
+                      <p className="text-stone-500 dark:text-stone-400 text-sm sm:text-base line-clamp-2 sm:line-clamp-3 mb-3 font-sans leading-relaxed cursor-text">
                         {post.excerpt}
                       </p>
-                      <div className="flex items-center gap-3 text-xs text-stone-400 font-sans">
+                      
+                      <div className="flex items-center gap-3 text-xs text-stone-400 font-sans" style={{userSelect:"none"}}>
                         <time>{post.date}</time>
                         <span>•</span>
                         <span>{post.readTime}</span>
                       </div>
                     </div>
+                    
+                    {/* LINK 2: The Thumbnail (Clickable) */}
                     {post.thumbnail && (
-                      <div className="w-28 h-28 sm:w-36 sm:h-32 flex-shrink-0 rounded-md overflow-hidden order-last bg-stone-100 dark:bg-stone-800">
-                        <img src={post.thumbnail} className="w-full h-full object-cover card-zoom-image transition-transform duration-500 group-hover:scale-105" alt={post.title} />
-                      </div>
+                      <Link href={`/post/${post.id}`} className="w-28 h-28 sm:w-36 sm:h-32 flex-shrink-0 rounded-md overflow-hidden order-last bg-stone-100 dark:bg-stone-800 block">
+                        <img src={post.thumbnail} style={{userSelect:"none"}} className="w-full h-full object-cover card-zoom-image transition-transform duration-500 group-hover:scale-105" alt={post.title} />
+                      </Link>
                     )}
                   </div>
                 </article>
-              </Link>
             )) : (
               <div className="py-12 text-center">
                 <div className="text-4xl mb-4">🔍</div>

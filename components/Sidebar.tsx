@@ -64,7 +64,7 @@ export default function Sidebar() {
         <aside className="lg:col-span-4 lg:sticky lg:top-28 h-fit space-y-8">
 
             {/* RECOMMENDED WIDGET */}
-            <div className="bg-white dark:bg-dark-card p-6 rounded-xl border border-stone-100 dark:border-dark-border shadow-sm transition-colors">
+            <div className="bg-white dark:bg-dark-card p-6 rounded-xl border border-stone-100 dark:border-dark-border shadow-sm transition-colors" style={{userSelect:"none"}}>
                 <h3 className="text-lg font-bold mb-5 flex items-center gap-2 text-stone-900 dark:text-white font-serif">
                     <IoSparklesOutline className="text-brand-500" /> Recommended
                 </h3>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Lora, JetBrains_Mono } from "next/font/google";
+import NextTopLoader from 'nextjs-toploader'; // <--- 1. IMPORT THIS
 import "./globals.css";
 
 const inter = Inter({
@@ -21,26 +22,15 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://lairsbug-blogs.netlify.app'),
   title: {
     default: "Lairs.bug | Personal Blog",
-    template: "%s | Lairs.bug" // Makes titles look like "My Post | Lairs.bug"
+    template: "%s | Lairs.bug"
   },
   description: "Personal blog by Lairs.bug covering tech, life, and thoughts.",
-  
-  icons: {
-    icon: '/icon.png', // points to app/icon.png
-    shortcut: '/icon.png',
-    apple: '/icon.png',
-  },
-  metadataBase: new URL('https://lairsbug-blogs.netlify.app'),
-
-  // 2. Google Search Console Verification
   verification: {
-    // You get this code from Google Search Console (I'll explain how below)
-    google: 'RYKnbQatu3BV67Mj3CdDF5RE-8TJoLnNhtyYG14FLQw', 
+    google: 'YOUR_GSC_VERIFICATION_CODE_HERE', 
   },
-  
-  // 3. Basic OpenGraph (Social Sharing) setup
   openGraph: {
     title: 'Lairs.bug | Personal Blog',
     description: 'Personal blog by Lairs.bug covering tech, life, and thoughts.',
@@ -49,8 +39,12 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
   },
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
 };
-
 
 export default function RootLayout({
   children,
@@ -60,9 +54,20 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        // Note: We don't need to add bg-colors here anymore, we do it in CSS
         className={`${inter.variable} ${lora.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        {/* 2. ADD THE COMPONENT HERE */}
+        <NextTopLoader
+          color="#8b5cf6"   /* Your Emerald Green brand color */
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={5}        /* Nice thin bar */
+          crawl={true}
+          showSpinner={false} /* Spinners are annoying, bars are sleek */
+          easing="ease"
+          speed={200}
+          shadow="0 0 10pxrgb(112, 16, 185),0 0 5pxrgb(100, 16, 185)" /* Glowing effect */
+        />
         {children}
       </body>
     </html>

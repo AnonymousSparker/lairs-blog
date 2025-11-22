@@ -49,14 +49,14 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                   md:bg-white md:dark:bg-dark-card md:rounded-2xl md:p-8 md:border-none md:shadow-sm md:hover:shadow-md">
 
                         {/* Back Button */}
-                        <div className="px-4 sm:px-0 pt-4 sm:pt-0">
+                        <div className="px-4 sm:px-0 pt-4 sm:pt-0" style={{userSelect:"none"}}> 
                             <Link href="/" className="mb-6 text-stone-500 hover:text-stone-900 dark:hover:text-stone-300 transition-colors flex items-center gap-2 text-sm font-mono">
                                 <GoHome /> Home
                             </Link>
                         </div>
 
                         {/* Post Header */}
-                        <header className="mb-8 px-4 sm:px-0 pb-8 border-b border-stone-100 dark:border-white/10">
+                        <header className="mb-8 px-4 sm:px-0 pb-8 border-b border-stone-100 dark:border-white/10" style={{userSelect:"none"}}>
                             <h1 className="text-3xl sm:text-4xl font-bold text-stone-900 dark:text-white leading-tight mb-6 font-serif">
                                 {post.title}
                             </h1>
@@ -89,7 +89,11 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
 
                             {post.thumbnail && (
                                 <div className="mb-8">
-                                    <img src={post.thumbnail} alt={post.title} className="w-full h-auto sm:h-[225px] object-cover rounded-xl shadow-sm" />
+                                   <img 
+                                        src={post.thumbnail} 
+                                        alt={post.title} 
+                                        className="w-full h-[200px] sm:h-[300px] object-cover rounded-xl shadow-sm" 
+                                    />
                                 </div>
                             )}
                         </header>

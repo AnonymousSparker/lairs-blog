@@ -59,7 +59,7 @@ export default function Header() {
                 {/* MAIN HEADER ROW */}
                 <div className="flex justify-between items-center">
                     {/* LOGO */}
-                    <Link href="/" className="group flex items-center gap-3 z-50" onClick={() => {setSearchQuery(''); setIsMenuOpen(false);}}>
+                    <Link href="/" className="group flex items-center gap-3 z-50" style={{userSelect:"none"}} onClick={() => {setSearchQuery(''); setIsMenuOpen(false);}}>
                         <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-black dark:bg-white rounded-full group-hover:bg-brand-500 transition-colors"></div>
                         <h1 className="text-xl sm:text-2xl font-bold tracking-tighter text-stone-900 dark:text-white group-hover:text-brand-700 dark:group-hover:text-brand-400 transition-colors font-mono">
                             Lairs.bug
@@ -90,7 +90,7 @@ export default function Header() {
                         </button>
 
                         {/* DESKTOP NAVIGATION */}
-                        <nav className="hidden sm:flex gap-6 text-sm font-medium text-stone-500 dark:text-stone-400 font-sans">
+                        <nav className="hidden sm:flex gap-6 text-sm font-medium text-stone-500 dark:text-stone-400 font-sans" style={{userSelect:"none"}}>
                             <Link href="/" className="hover:text-stone-900 dark:hover:text-white transition-colors">Blogs</Link>
                             <Link href="/about" className="hover:text-stone-900 dark:hover:text-white transition-colors">About</Link>
                         </nav>
