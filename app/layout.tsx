@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   description: "Personal blog by Lairs.bug covering tech, life, and thoughts.",
   
   icons: {
-    icon: '/asset/Logo.png', // Path to your logo in public/asset
-    shortcut: '/asset/Logo.png',
-    apple: '/asset/Logo.png', // Optional: for Apple devices
+    icon: '/icon.png', // points to app/icon.png
+    shortcut: '/icon.png',
+    apple: '/icon.png',
   },
   metadataBase: new URL('https://lairsbug-blogs.netlify.app'),
 
