@@ -126,13 +126,13 @@ export default function Interactions({ postId }: { postId: string }) {
         <div className="max-w-4xl mx-auto">
 
                     {/* LIKE / SHARE / VIEW BAR */}
-                    <div className="flex flex-wrap items-center gap-3 sm:gap-4 py-6 border-y border-stone-100 dark:border-white/5 my-12">
+                    <div className="flex flex-wrap items-center gap-1 sm:gap-3 py-6 border-y border-stone-100 dark:border-white/5 my-12">
             
             {/* LIKE BUTTON */}
             <button
                 onClick={handleLike}
                 disabled={isLiked}
-                className={`group flex items-center gap-2.5 px-5 py-2.5 rounded-full border transition-all duration-300 active:scale-95 ${
+                className={`group flex cursor-pointer items-center gap-2.5 px-5 py-2.5 rounded-full border transition-all duration-300 active:scale-95 ${
                     isLiked
                         ? 'bg-red-50/50 border-red-200 text-red-500 dark:bg-red-900/20 dark:border-red-900/30 cursor-default'
                         : 'bg-white dark:bg-stone-900/40 border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:border-red-200 hover:shadow-lg hover:shadow-red-500/10'
@@ -149,7 +149,7 @@ export default function Interactions({ postId }: { postId: string }) {
             {/* SHARE BUTTON */}
             <button
                 onClick={handleShare}
-                className="group flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white dark:bg-stone-900/40 border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 transition-all duration-300 hover:border-brand-300 hover:text-brand-600 dark:hover:text-brand-400 hover:shadow-lg hover:shadow-brand-500/10 active:scale-95"
+                className="group flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white dark:bg-stone-900/40 border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 transition-all duration-300 hover:border-brand-300 hover:text-brand-600 dark:hover:text-brand-400 hover:shadow-lg hover:shadow-brand-500/10 active:scale-95 cursor-pointer"
             >
                 <IoShareSocialOutline className="text-xl group-hover:rotate-12 transition-transform duration-300" />
                 <span className="font-medium text-sm">Share</span>
@@ -159,7 +159,7 @@ export default function Interactions({ postId }: { postId: string }) {
             <div className="hidden sm:block h-8 w-px bg-stone-200 dark:bg-stone-800 mx-2"></div>
 
             {/* VIEWS COUNTER */}
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-stone-50 dark:bg-stone-800/50 text-stone-400 dark:text-stone-500 border border-transparent dark:border-white/5 select-none">
+            <div className="flex items-center gap-2 px-2 py-2 text-stone-400 dark:text-stone-500 select-none">
                 <IoEyeOutline className="text-lg" />
                 <span className="text-sm font-medium">{views} Views</span>
             </div>
@@ -167,20 +167,20 @@ export default function Interactions({ postId }: { postId: string }) {
         </div>
 
             {/* COMMENT SECTION */}
-            <section className="px-4 sm:px-0 max-w-3xl mx-auto">
-                <div className="flex items-center justify-between mb-8">
+            <section className="px-1 sm:px-0 max-w-3xl mx-auto">
+                <div className="flex items-center justify-between mb-8 sm:mb-3">
                     <h3 className="text-2xl font-serif font-bold text-stone-900 dark:text-white">Discussion</h3>
                     <span className="text-xs font-mono text-stone-400 uppercase tracking-wider">Community</span>
                 </div>
 
                 {/* Comment Form Container */}
-                <div className="bg-stone-50/50 dark:bg-stone-900/30 border border-stone-100 dark:border-white/5 rounded-2xl p-6 sm:p-8 mb-12 backdrop-blur-sm transition-colors">
+                <div className="sm:p-8 mb-12 backdrop-blur-sm transition-colors">
                             
-                            <h3 className="text-lg font-bold text-stone-900 dark:text-white mb-6 font-serif">
+                            <h3 className="text-lg font-bold text-stone-900 dark:text-white mb-4 font-serif">
                                 Join the conversation
                             </h3>
 
-                            <form onSubmit={submitComment} className="space-y-4">
+                            <form onSubmit={submitComment} className="space-y-0">
                                 
                                 {/* Name Input with Icon */}
                                         <div className="relative group">
@@ -192,7 +192,7 @@ export default function Interactions({ postId }: { postId: string }) {
                                                 value={commentName}
                                                 onChange={(e) => setCommentName(e.target.value)}
                                                 placeholder="Name (Optional)"
-                                                className="w-full pl-11 pr-4 py-3 bg-white dark:bg-black/40 border border-stone-200 dark:border-stone-800 rounded-xl outline-none text-stone-800 dark:text-stone-200 placeholder:text-stone-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all duration-300"
+                                                className="w-full pl-11 pr-4 py-3 bg-white dark:bg-black/40 border border-stone-200 dark:border-stone-800 rounded-t-xl outline-none text-stone-800 dark:text-stone-200 border-b-[0.5px] placeholder:text-stone-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all duration-300"
                                             />
                                         </div>
 
@@ -204,7 +204,7 @@ export default function Interactions({ postId }: { postId: string }) {
                                                 onChange={(e) => setCommentText(e.target.value)}
                                                 placeholder="Share your thoughts..."
                                                 required
-                                                className="w-full px-4 py-3 bg-white dark:bg-black/40 border border-stone-200 dark:border-stone-800 rounded-xl outline-none text-stone-800 dark:text-stone-200 placeholder:text-stone-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all duration-300 resize-none min-h-[120px]"
+                                                className="w-full px-4 py-3 bg-white dark:bg-black/40 border border-t-[0.5px] border-stone-200 dark:border-stone-800 rounded-b-xl outline-none text-stone-800 dark:text-stone-200 placeholder:text-stone-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all duration-300 resize-none min-h-[120px]"
                                             ></textarea>
                                         </div>
 
@@ -213,7 +213,7 @@ export default function Interactions({ postId }: { postId: string }) {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="px-6 py-2.5 bg-stone-900 hover:bg-brand-600 dark:bg-white dark:text-black dark:hover:bg-brand-400 dark:hover:text-white text-white text-sm font-medium rounded-xl shadow-lg shadow-stone-200 dark:shadow-none hover:shadow-brand-500/20 active:scale-95 transition-all duration-300 flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                        className="px-6 py-2.5 bg-stone-900 hover:bg-brand-600 dark:bg-white dark:text-black dark:hover:bg-brand-400 dark:hover:text-white text-white text-sm font-medium rounded-xl shadow-lg shadow-stone-200 dark:shadow-none hover:shadow-brand-500/20 active:scale-95 transition-all duration-300 flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed mt-4"
                                     >
                                         {isSubmitting ? 'Posting...' : 'Post Comment'} 
                                         <IoIosSend className="text-xl" />
@@ -230,11 +230,11 @@ export default function Interactions({ postId }: { postId: string }) {
                         </div>
                     ) : (
                         comments.map((c) => (
-                            <div key={c.id} className="flex gap-4 fade-in group">
+                            <div key={c.id} className="flex gap-4 fade-in group bg-stone-50 dark:bg-stone-800/30 p-4 rounded-r-2xl rounded-bl-2xl">
                                 <div className="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/30 flex flex-shrink-0 items-center justify-center text-brand-700 dark:text-brand-400 font-bold text-sm shadow-sm border border-white dark:border-stone-700">
                                     {c.name.charAt(0).toUpperCase()}
                                 </div>
-                                <div className="flex-1 bg-stone-50 dark:bg-stone-800/30 p-4 rounded-r-2xl rounded-bl-2xl">
+                                <div className="flex-1">
                                     <div className="flex items-center justify-between mb-2">
                                         <span className="font-bold text-sm text-stone-900 dark:text-stone-200">{c.name}</span>
                                         <span className="text-xs text-stone-400 font-mono">

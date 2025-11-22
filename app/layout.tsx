@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://lairsbug-blogs.netlify.app'),
   title: {
     default: "Lairs.bug | Personal Blog",
-    template: "%s | Lairs.bug"
+    template: "%s"
   },
   description: "Personal blog by Lairs.bug covering tech, life, and thoughts.",
   verification: {
@@ -63,7 +63,15 @@ export default function RootLayout({
         // 3. Add the variable to the body class list
         className={`${inter.variable} ${lora.variable} ${jetbrainsMono.variable} ${sedgwick.variable} antialiased`}
       >
-        <NextTopLoader color="#8b5cf6" />
+        <NextTopLoader color="#8b5cf6" 
+        initialPosition={0.08}
+        crawlSpeed={300}
+        height={5}        /* Nice thin bar */
+        crawl={true}
+        showSpinner={false} /* Spinners are annoying, bars are sleek */
+        easing="ease"
+        speed={200}
+        />
         {children}
       </body>
     </html>

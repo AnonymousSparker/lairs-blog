@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     return {
         title: `${post.title} | Lairs.bug`,
         description: post.excerpt,
-        openGraph: { images: [post.thumbnail || '/asset/logo.png'] },
+        openGraph: { images: [post.thumbnail || '/asset/Logo.webp'] },
     };
 }
 
@@ -41,7 +41,7 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                 
                 {/* LEFT COLUMN: BLOG CONTENT (Span 8) */}
                 <main className="lg:col-span-8 min-h-[60vh]">
-                    <article className="article-card group fade-in transition-all duration-150
+                    <article className="article-card group transition-all duration-150
                   /* MOBILE STYLES (Default): Transparent bg, bottom border, tighter padding */
                   bg-transparent py-6 border-b border-stone-100 dark:border-stone-800
                   
@@ -57,13 +57,13 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
 
                         {/* Post Header */}
                         <header className="mb-8 px-4 sm:px-0 pb-8 border-b border-stone-100 dark:border-white/10" style={{userSelect:"none"}}>
-                            <h1 className="text-3xl sm:text-4xl font-bold text-stone-900 dark:text-white leading-tight mb-6 font-serif">
+                            <h1 className="text-2xl sm:text-4xl font-bold text-stone-900 dark:text-white leading-tight mb-6 font-serif">
                                 {post.title}
                             </h1>
 
                             <div className="flex items-start gap-3 mb-6">
                                 <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
-                                    <img src="/asset/logo.png" alt="Lairs" className="w-full h-full object-cover" />
+                                    <img src="/asset/Logo.webp" alt="Lairs" className="w-full h-full object-cover" />
                                 </div>
                                 <div>
                                     <div className="text-sm font-medium text-stone-900 dark:text-stone-200">{post.author}</div>
@@ -88,12 +88,16 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                             </div>
 
                             {post.thumbnail && (
-                                <div className="mb-8">
-                                   <img 
+                                <div className="mb-5">
+                                    <a href={post.thumbnail}
+                                        className="font-italic"
+                                    >
+                                        <img 
                                         src={post.thumbnail} 
                                         alt={post.title} 
                                         className="w-full h-[200px] sm:h-[300px] object-cover rounded-xl shadow-sm" 
                                     />
+                                    </a>
                                 </div>
                             )}
                         </header>

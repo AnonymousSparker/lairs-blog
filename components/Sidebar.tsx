@@ -107,7 +107,7 @@ export default function Sidebar() {
                     </div>
                 ) : (
                     /* FORM STATE */
-                    <div className="p-6 w-full animate-in fade-in slide-in-from-bottom-2 duration-300">
+                    <div className="p-6 w-full animate-in slide-in-from-bottom-2 duration-300">
                         <div className="mb-6">
                             <h3 className="text-lg font-bold text-stone-900 dark:text-white font-sans">Get in touch</h3>
                             <p className="text-sm text-stone-500 dark:text-stone-400 font-sans">Have a story or a question?</p>

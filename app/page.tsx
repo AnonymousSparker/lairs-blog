@@ -41,7 +41,7 @@ export default async function Home({
           {/* BLOG POST LIST */}
           <div className="space-y-2">
             {filteredPosts.length > 0 ? filteredPosts.map((post) => (
-              <article key={post.id} className="article-card group fade-in py-6 border-b border-stone-100 dark:border-stone-800">
+              <article key={post.id} className="article-card group py-6 border-b border-stone-100 dark:border-stone-800">
                   <div className="mb-2">
                     <span className="text-[10px] font-mono uppercase tracking-wider text-brand-50 dark:text-dark-bg bg-stone-400 px-2.5 py-0.75 rounded-4xl" style={{userSelect:"none"}}>
                       {post.tags[0]}
@@ -50,7 +50,7 @@ export default async function Home({
                   
                   <div className="flex items-center gap-2 mb-3" style={{userSelect:"none"}}>
                     <div className="w-5 h-5 rounded-full flex items-center justify-center overflow-hidden">
-                      <img src="/asset/logo.png" alt="Lairs" className="w-full h-full object-cover" draggable="false"/>
+                      <img src="/asset/Logo.webp" alt="Lairs" className="w-full h-full object-cover" draggable="false"/>
                     </div>
                     <span className="text-xs font-medium text-stone-600 dark:text-stone-300">{post.author}</span>
                   </div>
